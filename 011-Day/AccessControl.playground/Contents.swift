@@ -22,7 +22,7 @@ struct BankAccount {
 var account = BankAccount()
 account.deposit(amount: 100)
 
-let success = account.withdraw(amount: 200)
+let success = account.withdraw(amount: 50)
 
 if success {
     print("Withdrew money successfully")
@@ -35,5 +35,5 @@ if success {
 
 //Entonces para solucionar esto utilizamos el private var funds el cual solo permitira ser usado dentro del Struct
 
-// al pasar a private la variable ya no se puede ejecutar la linea 32
+// al pasar a private la variable ya no se puede ejecutar la linea 34
 

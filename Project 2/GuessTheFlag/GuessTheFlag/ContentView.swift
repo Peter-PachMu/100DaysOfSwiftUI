@@ -7,6 +7,26 @@
 
 import SwiftUI
 
+//var body: some View {
+//    VStack(spacing: 10) {
+//        CapsuleText(text: "First")
+//            .foregroundColor(.green)
+//        CapsuleText(text: "Second")
+//    }
+
+struct FlagImage: View {
+    
+    var image: String
+    
+    var body: some View {
+        Image(image)
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .shadow(radius: 5)
+    }
+}
+
+
 struct ContentView: View {
     
     @State private var showingScore = false
@@ -16,6 +36,7 @@ struct ContentView: View {
     
     //Challenge
     @State private var score = 0
+    @State private var question = 8
     @State private var questionNumber = 0
     
     var body: some View {
@@ -49,10 +70,12 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 5)
+                            //Project 3 Challenge
+                            FlagImage(image: countries[number])
+//                            Image(countries[number])
+//                                .renderingMode(.original)
+//                                .clipShape(Capsule())
+//                                .shadow(radius: 5)
                         }
                     }
                 }
@@ -68,7 +91,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .font(.title.bold())
                 
-                Text("Question \(questionNumber)/8")
+                Text("Question \(questionNumber)/\(question)")
                     .foregroundColor(.white)
 
                 Spacer()
@@ -76,8 +99,9 @@ struct ContentView: View {
             }
                 .padding()
         }
-            .alert(scoreTitle, isPresented: $showingScore){ //Mostramos alertas haciendo verdadera su condicion isPresented
-                if questionNumber >= 3 {
+            .alert(scoreTitle, isPresented: $showingScore){
+                //Mostramos alertas haciendo verdadera su condicion isPresented
+                if questionNumber >= question {
                     Button("Reset", action: resetGame)
                 }else{
                     Button("Continue", action: askQuestion)

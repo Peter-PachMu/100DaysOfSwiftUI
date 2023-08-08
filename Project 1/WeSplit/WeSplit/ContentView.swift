@@ -14,8 +14,18 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
+    //Challenge project 3
     
-    let tipPercentages = [10, 15, 20, 25, 0]
+    var tip : Bool {
+        if tipPercentage == 0 {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    //let tipPercentages = [10, 15, 20, 25, 0]
     
     var totalPerPerson: Double {
         let peopleCount = Double(numberOfPeople + 2)
@@ -35,6 +45,7 @@ struct ContentView: View {
         
         return grandTotal
     }
+    
     
     var body: some View {
         
@@ -64,7 +75,9 @@ struct ContentView: View {
                 }
                 //Challenge 2
                 Section {
+                    
                     Text(totalAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                        .foregroundColor(tip ? .red : .black) //Project 3 challenge
                 } header: {
                     Text("Total Amount")
                 }
